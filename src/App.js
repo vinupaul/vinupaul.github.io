@@ -413,8 +413,7 @@ function App() {
         className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/contact-bg.png')] bg-cover bg-center text-white"
       >
         <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-semibold text-white mb-10 text-center border-b mx-auto pb-2">Contact</h2>
-
+        <h2 className="text-3xl font-extrabold text-center mb-6 tracking-widest">Contact</h2>
 
           <p className="text-center text-gray-300 mb-4 max-w-2xl mx-auto">
             I'm currently seeking internship or full time opportunities. If you have a position that aligns with my skills feel free to reach out. I’ll do my best to get back to you!
@@ -569,20 +568,25 @@ function App() {
 
 
 
-      {/* Social Sidebar for larger screens */}
-      <div className="hidden sm:flex fixed bottom-6 left-4 z-50 flex-col items-center gap-5 text-white text-3xl">
-        <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="GitHub"><FaGithub /></a>
-        <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="LinkedIn"><FaLinkedin /></a>
-        <a href="mailto:vpaul@rivier.edu" className="hover:text-blue-400 transition-transform hover:scale-110" title="Email"><FaEnvelope /></a>
-        <div className="w-px h-16 bg-white/30 mt-1"></div>
-      </div>
+  {/* Social Sidebar for larger screens (shown only in Contact section) */}
+{showSidebar && (
+  <div className="hidden sm:flex fixed bottom-6 left-4 z-50 flex-col items-center gap-5 text-white text-3xl">
+    <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="GitHub"><FaGithub /></a>
+    <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="LinkedIn"><FaLinkedin /></a>
+    <a href="mailto:vpaul@rivier.edu" className="hover:text-blue-400 transition-transform hover:scale-110" title="Email"><FaEnvelope /></a>
+    <div className="w-px h-16 bg-white/30 mt-1"></div>
+  </div>
+)}
 
-      {/* Social Bar for small screens */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gray-900 flex justify-center gap-10 py-3 text-white text-2xl">
-        <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" title="GitHub"><FaGithub /></a>
-        <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" title="LinkedIn"><FaLinkedin /></a>
-        <a href="mailto:vpaul@rivier.edu" title="Email"><FaEnvelope /></a>
-      </div>
+{/* Social bar for mobile view (only in Contact section) */}
+{showSidebar && (
+  <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gray-900 flex justify-center gap-10 py-3 text-white text-2xl">
+    <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" title="GitHub"><FaGithub /></a>
+    <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" title="LinkedIn"><FaLinkedin /></a>
+    <a href="mailto:vpaul@rivier.edu" title="Email"><FaEnvelope /></a>
+  </div>
+)}
+
 
 
       <motion.footer
