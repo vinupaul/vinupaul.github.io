@@ -115,7 +115,7 @@ function App() {
   }, []);
 
   return (
-    <main className="text-gray-900 min-h-screen font-sans">
+<main className="text-gray-900 min-h-screen font-sans">
       <Toaster position="top-right" />
 
       {/* Navigation Bar */}
@@ -239,7 +239,7 @@ function App() {
       {/* Experience Section */}
       <section id="experience" className="scroll-mt-10 bg-[url('/public/images/experience-bg.png')] bg-no-repeat bg-cover bg-white py-10 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-10 text-center border-b pb-2">Experience</h2>
+          <h2 className="text-3xl font-semibold mb-10 text-center border-b pb-2">Experience</h2>
 
           {/* Timeline wrapper */}
           <div className="relative">
@@ -263,7 +263,7 @@ function App() {
                       <h3 className="text-lg font-bold text-blue-700">{job.role}</h3>
                     </div>
                     <p className="text-sm text-gray-600 italic mb-2">{job.company} · {job.location} · {job.duration}</p>
-                    <ul className="list-disc list-inside text-gray-800 space-y-1">
+                    <ul className="list-disc list-outside pl-5 text-gray-800 space-y-1">
                       {job.bullets.map((point, idx) => (
                         <li key={idx}>{point}</li>
                       ))}
@@ -280,15 +280,15 @@ function App() {
       {/* Projects Section */}
       <section id="projects" className=" scroll-mt-10 bg-white bg-[url('/public/images/projects-bg.png')] bg-cover bg-center py-12 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 border-b text-center pb-2">Projects</h2>
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-6">
+          <h2 className="text-3xl font-semibold mb-6 border-b text-center pb-2">Projects</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
             >
               <h3 className="text-xl font-semibold mb-2">Climate Change Simulator</h3>
               <p className="text-gray-700">
-                An interactive educational web app that visualizes how daily actions affect global climate metrics.
+                A responsive web app built using HTML, CSS, JavaScript, and Chart.js to help users understand how daily habits affect global climate indicators. Features include an interactive quiz, CO2 action tracker, rotating climate facts, and data visualizations that show simulated impacts of user decisions. Hosted on a university server for educational use.
               </p>
             </motion.div>
 
@@ -298,26 +298,32 @@ function App() {
             >
               <h3 className="text-xl font-semibold mb-2">Portfolio Website</h3>
               <p className="text-gray-700">
-                Gives an insight of my resume in detail              </p>
+                A visually engaging React-based portfolio website that highlights my skills, projects, and experience. Features include dynamic animations with Framer Motion, contact form integrated with Google Sheets and confirmation emails, mobile-responsive design, and smooth scrolling between sections. Deployed on GitHub Pages.
+              </p>
             </motion.div>
-
 
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
             >
-              <h3 className="text-xl font-semibold mb-2">Satellite onboard software lifecycle non-conformances analysis </h3>
+              <h3 className="text-xl font-semibold mb-2">Satellite Software Non-Conformance Analysis</h3>
               <p className="text-gray-700">
-                Using the MapReduce Algorithm on a SaaS that efficiently processes over 200 terabytes of Big Data, and extending it to PaaS which simplifies and streamlines large-scale data processing for long-term convenience. Tools used: JAVA, Apache Hadoop, AWS and Tableau              </p>
+                Developed a scalable big data pipeline using MapReduce on AWS EMR to analyze satellite onboard software non-conformances. Processed over 200 TB of logs to identify recurring issues and reduce debug time by 60%. Visualized trends using Tableau dashboards. Enhanced for PaaS environments to ensure long-term maintainability.
+              </p>
             </motion.div>
           </div>
+
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/skills-bg.png')] bg-no-repeat bg-cover">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 border-b-2 border-white text-white inline-block pb-2">Skills</h2>
+        {/* <h2 className="text-4xl text-white font-semibold text-center mb-6 pb-2 border-b-4 border-blue-400 inline-block mx-auto w-fit tracking-widest">
+  Skills
+</h2> */}
+          <h2 className="text-3xl font-semibold text-white mb-10 text-center border-b mx-auto pb-2">Skills</h2>
+
 
           {/* Frontend Skills */}
           <div className="mb-10">
@@ -406,8 +412,9 @@ function App() {
         ref={contactRef}
         className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/contact-bg.png')] bg-cover bg-center text-white"
       >
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-extrabold text-center mb-6 tracking-widest">Contact</h2>
+        <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold text-white mb-10 text-center border-b mx-auto pb-2">Contact</h2>
+
 
           <p className="text-center text-gray-300 mb-4 max-w-2xl mx-auto">
             I'm currently seeking internship or full time opportunities. If you have a position that aligns with my skills feel free to reach out. I’ll do my best to get back to you!
@@ -562,15 +569,32 @@ function App() {
 
 
 
-      {/* Social Sidebar */}
-      {showSidebar && (
-        <div className="fixed bottom-6 left-4 z-50 hidden sm:flex flex-col items-center gap-5 text-white text-3xl">
-          <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="GitHub"><FaGithub /></a>
-          <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="LinkedIn"><FaLinkedin /></a>
-          <a href="mailto:vpaul@rivier.edu" className="hover:text-blue-400 transition-transform hover:scale-110" title="Email Me"><FaEnvelope /></a>
-          <div className="w-px h-16 bg-white/30 mt-1"></div>
-        </div>
-      )}
+      {/* Social Sidebar for larger screens */}
+      <div className="hidden sm:flex fixed bottom-6 left-4 z-50 flex-col items-center gap-5 text-white text-3xl">
+        <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="GitHub"><FaGithub /></a>
+        <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="LinkedIn"><FaLinkedin /></a>
+        <a href="mailto:vpaul@rivier.edu" className="hover:text-blue-400 transition-transform hover:scale-110" title="Email"><FaEnvelope /></a>
+        <div className="w-px h-16 bg-white/30 mt-1"></div>
+      </div>
+
+      {/* Social Bar for small screens */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-gray-900 flex justify-center gap-10 py-3 text-white text-2xl">
+        <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" title="GitHub"><FaGithub /></a>
+        <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" title="LinkedIn"><FaLinkedin /></a>
+        <a href="mailto:vpaul@rivier.edu" title="Email"><FaEnvelope /></a>
+      </div>
+
+
+      <motion.footer
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gray-900 text-white text-center text-sm py-4"
+      >
+        © {new Date().getFullYear()} Vinu Paul. All rights reserved.
+      </motion.footer>
+
+
 
     </main>
   );
