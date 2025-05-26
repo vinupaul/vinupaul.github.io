@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { Toaster, toast } from 'react-hot-toast';
 
 
 const logoMap = {
@@ -31,7 +32,7 @@ const experiences = [
     location: 'Nashua',
     duration: 'Dec 2023 – Sep 2024',
     bullets: [
-      'Managed and optimized university social platforms, increasing engagement by 20%',
+      'Managed and optimized university social platforms, increasing engagement by 25%',
       'Created content using Premier Pro and Adobe Express',
       'Leveraged analytics tools to monitor performance and guide strategy'
     ]
@@ -42,8 +43,10 @@ const experiences = [
     location: 'Bengaluru',
     duration: 'Apr 2023 – Jul 2023',
     bullets: [
-      'Analyzed ad campaign data with Tableau and AWS to boost Williams Sonoma sales by 15%',
-      'Improved ad CTR by 10% through logic refinements and UI recommendations'
+      'Analyzed and reported on campaign performance to measure effectiveness and make recommendations for improvement which led to higher sales for Williams Sonoma',
+      'Executed the development of complete projects for Williams Sonoma resolved development and construction issues and making recommendations to creative design',
+      'Partnered seamlessly with onshore and offshore project managers to ensure successful and timely implementation of complex projects that got a contract extension'
+
     ]
   },
   {
@@ -52,8 +55,10 @@ const experiences = [
     location: 'Bengaluru',
     duration: 'Sep 2019 – May 2023',
     bullets: [
-      'Developed animated ad creatives using HTML/CSS/JS, jQuery, Greensock',
-      'Implemented logic-based rendering with APIs; saved 4+ hours/week via automation'
+      'Translated designs provided by clients into creatives with animations mainly over HTML, CSS, and JS with cross browser compatibility',
+      'Implemented logic-based rendering with APIs; saved 4+ hours/day via automation during high traffic season Ads',
+      'Ensured the compatibility of AD’s with various browsers and devices and Contributed towards writing test cases along with QA team',
+      'Worked with brands like Williams Sonoma, Nike and Marriott which buy about a million Impressions a week and set up of AD and AD campaigns with logic decisions and writing API calls for creatives to render dynamically'
     ]
   },
   {
@@ -63,7 +68,8 @@ const experiences = [
     duration: 'Mar 2019 – Sep 2019',
     bullets: [
       'Built animated ads meeting production standards in record time',
-      'Deployed ad for APAC client within 24 hours from start to production'
+      'Deployed ad for APAC client within 24 hours from start to production',
+      'Improvise the AD’s and learnt to use Photoshop, Animate CC, Google Web Designer'
     ]
   }
 ];
@@ -75,8 +81,11 @@ function App() {
   const contactRef = useRef(null);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(false);
-  const sections = ['about', 'experience', 'projects', 'skills', 'resume', 'contact'];
+  const sections = ['about', 'experience', 'projects', 'skills', 'contact', 'resume'];
   const [activeSection, setActiveSection] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState('');
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -88,6 +97,7 @@ function App() {
       if (contactRef.current) observer.unobserve(contactRef.current);
     };
   }, []);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,22 +116,39 @@ function App() {
 
   return (
     <main className="text-gray-900 min-h-screen font-sans">
+      <Toaster position="top-right" />
+
       {/* Navigation Bar */}
       <header className="sticky top-0 bg-white shadow z-50">
         <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold text-blue-700">Vinu</div>
-          <ul className="hidden md:flex space-x-8 text-sm font-semibold text-gray-700">
-            {sections.map((id) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className={`transition duration-200 ${activeSection === id ? 'text-blue-600 font-bold underline underline-offset-4' : 'hover:text-blue-500'}`}
-                >
-                  {id.charAt(0).toUpperCase() + id.slice(1)}
-                </a>
-              </li>
-            ))}
+          <ul className="hidden md:flex space-x-8 text-sm font-semibold text-gray-700 items-center">
+            {sections.map((id) =>
+              id === 'resume' ? (
+                <li key={id}>
+                  <a
+                    href="/resume/VinuPaul_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 transition transform font-semibold shadow-md border border-blue-700"
+                  >
+                    Resume
+                  </a>
+
+                </li>
+              ) : (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className={`transition duration-200 ${activeSection === id ? 'text-blue-600 font-bold underline underline-offset-4' : 'hover:text-blue-500'}`}
+                  >
+                    {id.charAt(0).toUpperCase() + id.slice(1)}
+                  </a>
+                </li>
+              )
+            )}
           </ul>
+
           <div className="md:hidden">
             <button onClick={() => setShowMobileNav(!showMobileNav)} className="text-2xl text-blue-700">
               {showMobileNav ? <FaTimes /> : <FaBars />}
@@ -131,12 +158,30 @@ function App() {
         {showMobileNav && (
           <div className="md:hidden bg-white px-6 py-4 space-y-4 text-sm font-semibold text-gray-800 shadow">
             {sections.map(id => (
-              <a key={id} href={`#${id}`} className="block hover:text-blue-500" onClick={() => setShowMobileNav(false)}>
-                {id.charAt(0).toUpperCase() + id.slice(1)}
-              </a>
+              id === 'resume' ? (
+                <a
+                  key={id}
+                  href="/resume/VinuPaul_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-2 bg-blue-600 text-white rounded-full text-center hover:bg-blue-700 transition"
+                >
+                  Resume
+                </a>
+              ) : (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className="block hover:text-blue-500"
+                  onClick={() => setShowMobileNav(false)}
+                >
+                  {id.charAt(0).toUpperCase() + id.slice(1)}
+                </a>
+              )
             ))}
           </div>
         )}
+
       </header>
 
 
@@ -175,14 +220,14 @@ function App() {
             </div>
 
             {/* Profile Picture */}
-       {/* Profile Picture */}
-<div className="md:w-1/3 flex justify-center">
-  <img
-    src="/images/mypicture.png"
-    alt="Vinu Paul"
-    className="w-48 h-48 object-cover object-[50%_30%] rounded-full border-4 border-white shadow-lg transition-transform duration-500 hover:scale-150"
-    />
-</div>
+            {/* Profile Picture */}
+            <div className="md:w-1/3 flex justify-center">
+              <img
+                src="/images/mypicture.png"
+                alt="Vinu Paul"
+                className="w-48 h-48 object-cover object-[50%_30%] rounded-full border-4 border-white shadow-lg transition-transform duration-500 hover:scale-150"
+              />
+            </div>
 
           </motion.div>
         </div>
@@ -195,11 +240,17 @@ function App() {
       <section id="experience" className="scroll-mt-10 bg-[url('/public/images/experience-bg.png')] bg-no-repeat bg-cover bg-white py-10 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-semibold mb-10 text-center border-b pb-2">Experience</h2>
-          <div className="relative before:absolute before:inset-y-0 before:left-1/2 before:w-1 before:bg-gradient-to-b before:from-blue-500 before:to-purple-500 before:-translate-x-1/2 before:hidden md:before:block">
+
+          {/* Timeline wrapper */}
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="hidden md:block absolute inset-y-0 left-1/2 w-1 bg-gradient-to-b from-blue-500 to-purple-500 transform -translate-x-1/2 z-0"></div>
+
+            {/* Timeline cards */}
             {experiences.map((job, index) => (
               <motion.div
                 key={index}
-                className={`mb-12 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                className={`relative z-10 mb-12 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -225,11 +276,12 @@ function App() {
         </div>
       </section>
 
+
       {/* Projects Section */}
       <section id="projects" className=" scroll-mt-10 bg-white bg-[url('/public/images/projects-bg.png')] bg-cover bg-center py-12 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-semibold mb-6 border-b text-center pb-2">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-3 md:grid-cols-3 gap-6">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
@@ -239,6 +291,17 @@ function App() {
                 An interactive educational web app that visualizes how daily actions affect global climate metrics.
               </p>
             </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
+            >
+              <h3 className="text-xl font-semibold mb-2">Portfolio Website</h3>
+              <p className="text-gray-700">
+                Gives an insight of my resume in detail              </p>
+            </motion.div>
+
+
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
@@ -252,7 +315,7 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="scroll-mt-5 py-16 px-4 bg-[url('/public/images/skills-bg.png')] bg-no-repeat bg-cover">
+      <section id="skills" className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/skills-bg.png')] bg-no-repeat bg-cover">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8 border-b-2 border-white text-white inline-block pb-2">Skills</h2>
 
@@ -262,8 +325,8 @@ function App() {
             <div className="flex justify-center">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-6">
                 {[
-                  { name: 'JavaScript / ReactJS', icon: '/logos/reactjs.png', level: 5 },
-                  { name: 'HTML / CSS / Tailwind', icon: '/logos/tailwind.jpeg', level: 5 }
+                  { name: 'JavaScript / ReactJS', icon: '/logos/reactjs.png', level: 4 },
+                  { name: 'HTML / CSS / Tailwind', icon: '/logos/tailwind.jpeg', level: 3 }
                 ].map((skill, index) => (
                   <motion.div
                     key={index}
@@ -288,8 +351,8 @@ function App() {
             <div className="flex justify-center">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-6">
                 {[
-                  { name: 'Python / Java', icon: '/logos/python.jpeg', level: 4 },
-                  { name: 'SQL / MySQL', icon: '/logos/sql.png', level: 4 }
+                  { name: 'Python / Java', icon: '/logos/python.jpeg', level: 3 },
+                  { name: 'SQL / MySQL', icon: '/logos/sql.png', level: 3 }
                 ].map((skill, index) => (
                   <motion.div
                     key={index}
@@ -314,7 +377,7 @@ function App() {
             <div className="flex justify-center">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6">
                 {[
-                  { name: 'AWS', icon: '/logos/aws-git.png', level: 4 },
+                  { name: 'AWS', icon: '/logos/aws-git.png', level: 3 },
                   { name: 'Git', icon: '/logos/git.png', level: 4 },
                   { name: 'Data Analysis / Tableau', icon: '/logos/tableau.png', level: 4 }
                 ].map((skill, index) => (
@@ -337,44 +400,82 @@ function App() {
         </div>
       </section>
 
-
-      {/* Resume Section */}
-      <section id="resume" className="scroll-mt-10 py-10 px-4 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Resume</h2>
-          <p className="mb-4 text-gray-700">You can view or download my full resume in PDF format.</p>
-          <a
-            href="/resume/VinuPaul_Resume.pdf"
-            className="inline-block px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-            download
-          >
-            Download Resume
-          </a>
-        </div>
-      </section>
-
-
       {/* Contact Section with Form and Info */}
-      <section id="contact" className="scroll-mt-10 py-16 px-4 bg-[url('/public/images/contact-bg.png')] bg-cover bg-center text-white">
+      <section
+        id="contact"
+        ref={contactRef}
+        className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/contact-bg.png')] bg-cover bg-center text-white"
+      >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-extrabold text-center mb-6 tracking-widest uppercase">Contact</h2>
+          <h2 className="text-4xl font-extrabold text-center mb-6 tracking-widest">Contact</h2>
 
           <p className="text-center text-gray-300 mb-4 max-w-2xl mx-auto">
-            I'm currently seeking internship or full time opportunities. If you have a position that aligns with my skills, or if you just want to connect, feel free to reach out. My inbox is always open, and I’ll do my best to get back to you!
-          </p>
-
-          <p className="text-center text-gray-400 mb-10 max-w-xl mx-auto">
-            Have any questions or assistance? Feel free to reach out to me! I am here to help and respond as soon as possible.
+            I'm currently seeking internship or full time opportunities. If you have a position that aligns with my skills feel free to reach out. I’ll do my best to get back to you!
           </p>
 
           <div className="flex flex-col md:flex-row gap-12 justify-center items-center">
             {/* Contact Form */}
-            <form className="w-full max-w-md bg-white p-6 rounded-lg shadow space-y-6 text-gray-800">
+
+            <form
+              className="w-full max-w-md bg-white p-6 rounded-lg shadow space-y-6 text-gray-800"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const formData = new FormData(form);
+                const email = formData.get("email");
+                const phone = formData.get("phone");
+
+                // Email format validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                  alert("Please enter a valid email address.");
+                  return;
+                }
+
+                // Phone format validation (basic)
+                if (phone && !/^\+?[0-9\s-]{7,15}$/.test(phone)) {
+                  alert("Please enter a valid phone number.");
+                  return;
+                }
+
+                setIsSubmitting(true);
+
+                try {
+                  const response = await fetch(
+                    "https://script.google.com/macros/s/AKfycbw2VZdv1Xk2k0HxVlsx7zZ6AEsitCnIYxxJsVTtN9LxWmk08s_7hkYI8A6vNKqrFstvNQ/exec",
+                    {
+                      method: "POST",
+                      body: formData,
+                    }
+                  );
+
+                  if (response.ok) {
+                    toast.success("Message sent! Confirmation email on the way 🎉");
+                    setFormSuccess('Thanks! Your message has been sent.');
+                    form.reset();
+                    setTimeout(() => setFormSuccess(''), 5000);
+                  }
+                  else {
+                    throw new Error("Failed to submit");
+                  }
+                } catch (err) {
+                  alert("Oops! Something went wrong. Try again.");
+                } finally {
+                  setIsSubmitting(false);
+                }
+              }}
+            >
+              {formSuccess && (
+                <div className="bg-green-100 text-green-800 px-4 py-2 rounded mb-4 text-center border border-green-300 shadow-sm">
+                  {formSuccess}
+                </div>
+              )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="firstName" className="block mb-1 text-sm font-medium">First name *</label>
                   <input
                     type="text"
+                    name="firstName"
                     id="firstName"
                     required
                     className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
@@ -384,6 +485,7 @@ function App() {
                   <label htmlFor="lastName" className="block mb-1 text-sm font-medium">Last name *</label>
                   <input
                     type="text"
+                    name="lastName"
                     id="lastName"
                     required
                     className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
@@ -395,6 +497,7 @@ function App() {
                 <label htmlFor="email" className="block mb-1 text-sm font-medium">Email</label>
                 <input
                   type="email"
+                  name="email"
                   id="email"
                   required
                   placeholder="Enter your email"
@@ -406,6 +509,7 @@ function App() {
                 <label htmlFor="phone" className="block mb-1 text-sm font-medium">Phone</label>
                 <input
                   type="tel"
+                  name="phone"
                   id="phone"
                   className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
                 />
@@ -414,6 +518,7 @@ function App() {
               <div>
                 <label htmlFor="message" className="block mb-1 text-sm font-medium">Message</label>
                 <textarea
+                  name="message"
                   id="message"
                   rows="4"
                   className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
@@ -422,14 +527,40 @@ function App() {
 
               <button
                 type="submit"
-                className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded font-semibold transition"
+                className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded font-semibold transition flex justify-center items-center gap-2"
+                disabled={isSubmitting}
               >
-                Submit
+                {isSubmitting && (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8H4z"
+                    />
+                  </svg>
+                )}
+                {isSubmitting ? "Sending..." : "Submit"}
               </button>
             </form>
           </div>
         </div>
       </section>
+
+
+
 
       {/* Social Sidebar */}
       {showSidebar && (
@@ -440,8 +571,10 @@ function App() {
           <div className="w-px h-16 bg-white/30 mt-1"></div>
         </div>
       )}
+
     </main>
   );
 }
+
 
 export default App;
