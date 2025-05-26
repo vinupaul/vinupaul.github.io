@@ -442,7 +442,7 @@ function App() {
 
                 try {
                   const response = await fetch(
-                    "https://script.google.com/macros/s/AKfycbw2VZdv1Xk2k0HxVlsx7zZ6AEsitCnIYxxJsVTtN9LxWmk08s_7hkYI8A6vNKqrFstvNQ/exec",
+                    "https://script.google.com/macros/s/AKfycbwkKr7pZr1Cm3FYQ1cZIV8qlGe0qD5HoyFKAtiOMEdWrQr0roHj0Axo2Ia_kZG3e9ZRFg/exec",
                     {
                       method: "POST",
                       body: formData,
