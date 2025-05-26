@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 
 const logoMap = {
@@ -67,74 +68,131 @@ const experiences = [
   }
 ];
 
+
+
+
 function App() {
   const contactRef = useRef(null);
-const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
+  const sections = ['about', 'experience', 'projects', 'skills', 'resume', 'contact'];
+  const [activeSection, setActiveSection] = useState('');
 
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => setShowSidebar(entry.isIntersecting),
-    { threshold: 0.5 }
-  );
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowSidebar(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    if (contactRef.current) observer.observe(contactRef.current);
+    return () => {
+      if (contactRef.current) observer.unobserve(contactRef.current);
+    };
+  }, []);
 
-  if (contactRef.current) {
-    observer.observe(contactRef.current);
-  }
-
-  return () => {
-    if (contactRef.current) observer.unobserve(contactRef.current);
-  };
-}, []);
-
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let id of sections) {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+          setActiveSection(id);
+          break;
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <main className="text-gray-900 min-h-screen font-sans">
       {/* Navigation Bar */}
       <header className="sticky top-0 bg-white shadow z-50">
-        <nav className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="font-bold text-xl text-blue-700">Vinu</div>
-          <ul className="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
-            <li><a href="#about" className="hover:text-blue-500 transition">About</a></li>
-            <li><a href="#experience" className="hover:text-blue-500 transition">Experience</a></li>
-            <li><a href="#projects" className="hover:text-blue-500 transition">Projects</a></li>
-            <li><a href="#skills" className="hover:text-blue-500 transition">Skills</a></li>
-            <li><a href="#resume" className="hover:text-blue-500 transition">Resume</a></li>
-            <li><a href="#contact" className="hover:text-blue-500 transition">Contact</a></li>
+        <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold text-blue-700">Vinu</div>
+          <ul className="hidden md:flex space-x-8 text-sm font-semibold text-gray-700">
+            {sections.map((id) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className={`transition duration-200 ${activeSection === id ? 'text-blue-600 font-bold underline underline-offset-4' : 'hover:text-blue-500'}`}
+                >
+                  {id.charAt(0).toUpperCase() + id.slice(1)}
+                </a>
+              </li>
+            ))}
           </ul>
+          <div className="md:hidden">
+            <button onClick={() => setShowMobileNav(!showMobileNav)} className="text-2xl text-blue-700">
+              {showMobileNav ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </nav>
+        {showMobileNav && (
+          <div className="md:hidden bg-white px-6 py-4 space-y-4 text-sm font-semibold text-gray-800 shadow">
+            {sections.map(id => (
+              <a key={id} href={`#${id}`} className="block hover:text-blue-500" onClick={() => setShowMobileNav(false)}>
+                {id.charAt(0).toUpperCase() + id.slice(1)}
+              </a>
+            ))}
+          </div>
+        )}
       </header>
 
-      {/* Header Section with Background Image */}
+
+      {/* Combined About Section with Unified Background */}
       <section
         id="about"
-        className="text-center py-24 bg-cover bg-no-repeat shadow-sm px-4 text-white"
+        className="scroll-mt-24 bg-cover bg-center bg-no-repeat text-white"
         style={{
-          backgroundImage: "url('/images/polar-bg.jpg')",
-          backgroundPosition: 'center'
+          backgroundImage: "url('/images/about-bg.png')"
         }}
       >
-        <div className="inline-block bg-black/40 px-1 py-2 rounded-md backdrop-blur-sm">
-          <h1 className="text-4xl text-white font-bold mb-1 drop-shadow">Vinu Paul</h1>
-          <p className="text-lg text-white drop-shadow">Software Developer | Data Analyst | Full Stack Enthusiast</p>
+        <div className="max-w-6xl mx-auto px-4 py-20 text-center">
+          <div className="bg-black/50 px-6 py-4 rounded-md inline-block backdrop-blur-sm">
+            <h1 className="text-4xl font-bold mb-2 drop-shadow">Vinu Paul</h1>
+            <p className="text-lg drop-shadow">Software Developer | Data Analyst | Full Stack Enthusiast</p>
+          </div>
+        </div>
+
+        {/* About Me Section with Image on the Right */}
+        <div className="max-w-5xl mx-auto px-6 pb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="bg-black/40 text-white p-6 rounded-md backdrop-blur-sm flex flex-col md:flex-row gap-6 items-center"
+          >
+            {/* Text Content */}
+            <div className="md:w-2/3">
+              <h2 className="text-2xl font-semibold mb-4 border-b border-white/40 pb-2">About Me</h2>
+              <p className="text-md leading-relaxed">
+                I'm a software developer with over 4 years of industry experience, having worked with brands like Nike,
+                Marriott, and Williams Sonoma. I specialize in full-stack development and data analytics, and I recently
+                completed my Master’s in Computer Science from Rivier University. I'm passionate about building elegant
+                user interfaces, solving real-world problems, and biking through the unknown.
+              </p>
+            </div>
+
+            {/* Profile Picture */}
+       {/* Profile Picture */}
+<div className="md:w-1/3 flex justify-center">
+  <img
+    src="/images/mypicture.png"
+    alt="Vinu Paul"
+    className="w-48 h-48 object-cover object-[50%_30%] rounded-full border-4 border-white shadow-lg transition-transform duration-500 hover:scale-150"
+    />
+</div>
+
+          </motion.div>
         </div>
 
       </section>
 
-      {/* About Me with Soft Background */}
-      <section className="max-w-5xl mx-auto py-10 px-4 bg-white/90 backdrop-blur-md rounded-md mt-4">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <h2 className="text-2xl font-semibold mb-4 border-b pb-2">About Me</h2>
-          <p className="text-md text-gray-800 leading-relaxed">
-            I'm a software developer with over 4 years of industry experience, having worked with brands like Nike,
-            Marriott, and Williams Sonoma. I specialize in full-stack development and data analytics, and I recently
-            completed my Master’s in Computer Science from Rivier University. I'm passionate about building elegant
-            user interfaces, solving real-world problems, and biking through the unknown.
-          </p>
-        </motion.div>
-      </section>
+
 
       {/* Experience Section */}
-      <section id="experience" className="bg-white py-10 px-4">
+      <section id="experience" className="scroll-mt-10 bg-[url('/public/images/experience-bg.png')] bg-no-repeat bg-cover bg-white py-10 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-semibold mb-10 text-center border-b pb-2">Experience</h2>
           <div className="relative before:absolute before:inset-y-0 before:left-1/2 before:w-1 before:bg-gradient-to-b before:from-blue-500 before:to-purple-500 before:-translate-x-1/2 before:hidden md:before:block">
@@ -168,9 +226,9 @@ useEffect(() => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="bg-white py-12 px-6">
+      <section id="projects" className=" scroll-mt-10 bg-white bg-[url('/public/images/projects-bg.png')] bg-cover bg-center py-12 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 border-b pb-2">Projects</h2>
+          <h2 className="text-2xl font-semibold mb-6 border-b text-center pb-2">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div
               whileHover={{ scale: 1.02 }}
@@ -194,13 +252,13 @@ useEffect(() => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 px-4 bg-[#f9fafb]">
+      <section id="skills" className="scroll-mt-5 py-16 px-4 bg-[url('/public/images/skills-bg.png')] bg-no-repeat bg-cover">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 border-b-2 border-blue-500 inline-block pb-2">Skills</h2>
+          <h2 className="text-3xl font-bold mb-8 border-b-2 border-white text-white inline-block pb-2">Skills</h2>
 
           {/* Frontend Skills */}
           <div className="mb-10">
-            <h3 className="text-xl font-semibold text-center mb-4 text-gray-700">Frontend</h3>
+            <h3 className="text-xl font-semibold text-center mb-4 text-white">Frontend</h3>
             <div className="flex justify-center">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-6">
                 {[
@@ -226,7 +284,7 @@ useEffect(() => {
 
           {/* Backend Skills */}
           <div className="mb-10">
-            <h3 className="text-xl font-semibold text-center mb-4 text-gray-700">Backend</h3>
+            <h3 className="text-xl font-semibold text-center mb-4 text-white">Backend</h3>
             <div className="flex justify-center">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-6">
                 {[
@@ -252,7 +310,7 @@ useEffect(() => {
 
           {/* Tools & Cloud Skills */}
           <div>
-            <h3 className="text-xl font-semibold text-center mb-4 text-gray-700">Tools & Cloud</h3>
+            <h3 className="text-xl font-semibold text-center mb-4 text-white">Tools & Cloud</h3>
             <div className="flex justify-center">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6">
                 {[
@@ -281,7 +339,7 @@ useEffect(() => {
 
 
       {/* Resume Section */}
-      <section id="resume" className="py-10 px-4 bg-white">
+      <section id="resume" className="scroll-mt-10 py-10 px-4 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Resume</h2>
           <p className="mb-4 text-gray-700">You can view or download my full resume in PDF format.</p>
@@ -297,11 +355,7 @@ useEffect(() => {
 
 
       {/* Contact Section with Form and Info */}
-      <section
-        id="contact"
-        ref={contactRef}
-        className="py-16 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-white"
-      >
+      <section id="contact" className="scroll-mt-10 py-16 px-4 bg-[url('/public/images/contact-bg.png')] bg-cover bg-center text-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-extrabold text-center mb-6 tracking-widest uppercase">Contact</h2>
 
@@ -378,41 +432,14 @@ useEffect(() => {
       </section>
 
       {/* Social Sidebar */}
-      
       {showSidebar && (
         <div className="fixed bottom-6 left-4 z-50 hidden sm:flex flex-col items-center gap-5 text-white text-3xl">
-          <a
-            href="https://github.com/vinupaul"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-400 transition-transform hover:scale-110"
-            title="GitHub"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://linkedin.com/in/vinupaul"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-400 transition-transform hover:scale-110"
-            title="LinkedIn"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="mailto:vpaul@rivier.edu"
-            className="hover:text-blue-400 transition-transform hover:scale-110"
-            title="Email Me"
-          >
-            <FaEnvelope />
-          </a>
+          <a href="https://github.com/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="GitHub"><FaGithub /></a>
+          <a href="https://linkedin.com/in/vinupaul" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-transform hover:scale-110" title="LinkedIn"><FaLinkedin /></a>
+          <a href="mailto:vpaul@rivier.edu" className="hover:text-blue-400 transition-transform hover:scale-110" title="Email Me"><FaEnvelope /></a>
           <div className="w-px h-16 bg-white/30 mt-1"></div>
         </div>
       )}
-
-
-
-
     </main>
   );
 }

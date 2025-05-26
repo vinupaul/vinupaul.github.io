@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+.contact-section {
+  background-image: url('/images/contact-bg.png');
+}
+
+.projects-section {
+  background-image: url('/images/projects-bg.png');
+}
+
+.skills-section {
+  background-image: url('/images/skills-bg.png');
+}
