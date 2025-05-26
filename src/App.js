@@ -413,7 +413,7 @@ function App() {
         className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/contact-bg.png')] bg-cover bg-center text-white"
       >
         <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-extrabold text-center mb-6 tracking-widest">Contact</h2>
+        <h2 className="text-3xl font-extrabold text-center mb-6 tracking-widest border-b pb-2 max-w-3xs">Contact</h2>
 
           <p className="text-center text-gray-300 mb-4 max-w-2xl mx-auto">
             I'm currently seeking internship or full time opportunities. If you have a position that aligns with my skills feel free to reach out. I’ll do my best to get back to you!
