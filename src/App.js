@@ -43,10 +43,10 @@ const experiences = [
     location: 'Bengaluru',
     duration: 'Apr 2023 – Jul 2023',
     bullets: [
-      'Analyzed and reported on campaign performance to measure effectiveness and make recommendations for improvement which led to higher sales for Williams Sonoma',
-      'Executed the development of complete projects for Williams Sonoma resolved development and construction issues and making recommendations to creative design',
-      'Partnered seamlessly with onshore and offshore project managers to ensure successful and timely implementation of complex projects that got a contract extension'
-
+      'Analyzed campaign performance using Jivox’s analytics tools, delivering insights that led to a 15% sales increase for Williams Sonoma',
+      'Led the end-to-end development of ad projects for Williams Sonoma, resolving logic and implementation issues and providing design and API recommendations that increased CTR by 10%. Integrated contextual APIs (weather, date/time, location) into dynamic ad creatives for real-time personalization',
+      'Led end-to-end integration of Jivox’s SaaS-based ad personalization platform for global clients',
+      'Served as technical liaison during onboarding, managing client expectations and delivering production-ready solutions'
     ]
   },
   {
@@ -55,10 +55,12 @@ const experiences = [
     location: 'Bengaluru',
     duration: 'Sep 2019 – May 2023',
     bullets: [
-      'Translated designs provided by clients into creatives with animations mainly over HTML, CSS, and JS with cross browser compatibility',
-      'Implemented logic-based rendering with APIs; saved 4+ hours/day via automation during high traffic season Ads',
-      'Ensured the compatibility of AD’s with various browsers and devices and Contributed towards writing test cases along with QA team',
-      'Worked with brands like Williams Sonoma, Nike and Marriott which buy about a million Impressions a week and set up of AD and AD campaigns with logic decisions and writing API calls for creatives to render dynamically'
+      'Developed animated, cross-browser ad creatives using HTML, CSS, JavaScript, jQuery, and Greensock, delivering campaigns for brands like Nike, Marriott, and Williams Sonoma',
+      'Automated ad production workflows and integrated logic-based API rendering, saving 4+ hours weekly and improving scalability during peak traffic',
+      'Owned client onboarding and configuration for logic-based ad delivery using REST APIs and dynamic data triggers',
+      'Collaborated with client tech teams to align campaign behavior with real-time weather, time, and geolocation data',
+      'Handled escalations during peak traffic, ensuring performance and scalability across large-volume campaigns'
+      
     ]
   },
   {
