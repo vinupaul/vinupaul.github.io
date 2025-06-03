@@ -486,6 +486,7 @@ function App() {
                     name="firstName"
                     id="firstName"
                     required
+                  placeholder="First Name"
                     className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
                   />
                 </div>
@@ -496,6 +497,7 @@ function App() {
                     name="lastName"
                     id="lastName"
                     required
+                  placeholder="Last Name"
                     className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
                   />
                 </div>
@@ -519,6 +521,7 @@ function App() {
                   type="tel"
                   name="phone"
                   id="phone"
+                  placeholder="Phone Number"
                   className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
                 />
               </div>
@@ -529,6 +532,7 @@ function App() {
                   name="message"
                   id="message"
                   rows="4"
+                  placeholder="Type Your Message"
                   className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
                 ></textarea>
               </div>
