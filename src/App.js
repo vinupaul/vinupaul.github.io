@@ -309,7 +309,7 @@ function App() {
             >
               <h3 className="text-xl font-semibold mb-2">Property Management Site</h3>
               <p className="text-gray-700">
-              Working on a MERN-based property management site to manage listings and tenant interactions efficiently.              </p>
+              Working on a MERN-based property management site to manage listings and tenant interactions efficiently. Currently work in Progress.             </p>
             </motion.div>
 
             <motion.div
