@@ -294,7 +294,7 @@ function App() {
               </p>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
             >
@@ -302,6 +302,14 @@ function App() {
               <p className="text-gray-700">
                 A visually engaging React-based portfolio website that highlights my skills, projects, and experience. Features include dynamic animations with Framer Motion, contact form integrated with Google Sheets and confirmation emails, mobile-responsive design, and smooth scrolling between sections. Deployed on GitHub Pages.
               </p>
+            </motion.div> */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
+            >
+              <h3 className="text-xl font-semibold mb-2">Property Management Site</h3>
+              <p className="text-gray-700">
+              Working on a MERN-based property management site to manage listings and tenant interactions efficiently.              </p>
             </motion.div>
 
             <motion.div
@@ -313,6 +321,8 @@ function App() {
                 Developed a scalable big data pipeline using MapReduce on AWS EMR to analyze satellite onboard software non-conformances. Processed over 200 TB of logs to identify recurring issues and reduce debug time by 60%. Visualized trends using Tableau dashboards. Enhanced for PaaS environments to ensure long-term maintainability.
               </p>
             </motion.div>
+
+            
           </div>
 
         </div>
