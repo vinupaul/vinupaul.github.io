@@ -280,53 +280,63 @@ function App() {
 
 
       {/* Projects Section */}
-      <section id="projects" className=" scroll-mt-10 bg-white bg-[url('/public/images/projects-bg.png')] bg-cover bg-center py-12 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-6 border-b text-center pb-2">Projects</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
-            >
-              <h3 className="text-xl font-semibold mb-2">Climate Change Simulator</h3>
-              <p className="text-gray-700">
-                A responsive web app built using HTML, CSS, JavaScript, and Chart.js to help users understand how daily habits affect global climate indicators. Features include an interactive quiz, CO2 action tracker, rotating climate facts, and data visualizations that show simulated impacts of user decisions. Hosted on a university server for educational use.
-              </p>
-            </motion.div>
+<section id="projects" className="scroll-mt-10 bg-white bg-[url('/public/images/projects-bg.png')] bg-cover bg-center py-12 px-6">
+  <div className="max-w-5xl mx-auto">
+    <h2 className="text-3xl font-semibold mb-6 border-b text-center pb-2">Projects</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-            {/* <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
-            >
-              <h3 className="text-xl font-semibold mb-2">Portfolio Website</h3>
-              <p className="text-gray-700">
-                A visually engaging React-based portfolio website that highlights my skills, projects, and experience. Features include dynamic animations with Framer Motion, contact form integrated with Google Sheets and confirmation emails, mobile-responsive design, and smooth scrolling between sections. Deployed on GitHub Pages.
-              </p>
-            </motion.div> */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
-            >
-              <h3 className="text-xl font-semibold mb-2">Property Management Site</h3>
-              <p className="text-gray-700">
-              Working on a MERN-based property management site to manage listings and tenant interactions efficiently. Currently work in Progress.             </p>
-            </motion.div>
+      {/* Climate Change Simulator */}
+      <a href="https://github.com/vinupaul/RivierProject" target="_blank" rel="noopener noreferrer">
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          className="bg-gray-100 p-6 rounded-xl shadow-sm transition cursor-pointer"
+        >
+          <h3 className="text-xl font-semibold mb-2">Climate Change Simulator</h3>
+          <p className="text-gray-700">
+            A responsive web app built using HTML, CSS, JavaScript, and Chart.js to help users understand how daily habits affect global climate indicators. Features include an interactive quiz, CO2 action tracker, rotating climate facts, and data visualizations that show simulated impacts of user decisions. Hosted on a university server for educational use.
+          </p>
+        </motion.div>
+      </a>
 
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
-            >
-              <h3 className="text-xl font-semibold mb-2">Satellite Software Non-Conformance Analysis</h3>
-              <p className="text-gray-700">
-                Developed a scalable big data pipeline using MapReduce on AWS EMR to analyze satellite onboard software non-conformances. Processed over 200 TB of logs to identify recurring issues and reduce debug time by 60%. Visualized trends using Tableau dashboards. Enhanced for PaaS environments to ensure long-term maintainability.
-              </p>
-            </motion.div>
+      {/* Portfolio Website */}
+      <a href="https://github.com/vinupaul/vinupaul.github.io" target="_blank" rel="noopener noreferrer">
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          className="bg-gray-100 p-6 rounded-xl shadow-sm transition cursor-pointer"
+        >
+          <h3 className="text-xl font-semibold mb-2">Portfolio Website</h3>
+          <p className="text-gray-700">
+            A visually engaging React-based portfolio website that highlights my skills, projects, and experience. Features include dynamic animations with Framer Motion, contact form integrated with Google Sheets and confirmation emails, mobile-responsive design, and smooth scrolling between sections. Deployed on GitHub Pages.
+          </p>
+        </motion.div>
+      </a>
 
-            
-          </div>
+      {/* Property Management Site */}
+      <a href="https://github.com/vinupaul/mangals-property-site" target="_blank" rel="noopener noreferrer">
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          className="bg-gray-100 p-6 rounded-xl shadow-sm transition cursor-pointer"
+        >
+          <h3 className="text-xl font-semibold mb-2">Property Management Site</h3>
+          <p className="text-gray-700">
+          A full-stack MERN property management platform designed to simplify rental workflows. Includes features for listing properties, tenant messaging, and admin management. Built using React, Node.js, MongoDB, and Express with plans to integrate authentication and payment handling. Currently a work in progress with modular and scalable architecture.          </p>
+        </motion.div>
+      </a>
 
-        </div>
-      </section>
+      {/* Satellite Software Project (no link)
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        className="bg-gray-100 p-6 rounded-xl shadow-sm transition"
+      >
+        <h3 className="text-xl font-semibold mb-2">Satellite Software Non-Conformance Analysis</h3>
+        <p className="text-gray-700">
+          Developed a scalable big data pipeline using MapReduce on AWS EMR to analyze satellite onboard software non-conformances. Processed over 200 TB of logs to identify recurring issues and reduce debug time by 60%. Visualized trends using Tableau dashboards. Enhanced for PaaS environments to ensure long-term maintainability.
+        </p>
+      </motion.div> */}
+
+    </div>
+  </div>
+</section>
 
       {/* Skills Section */}
       <section id="skills" className="scroll-mt-2 py-16 px-4 bg-[url('/public/images/skills-bg.png')] bg-no-repeat bg-cover">
