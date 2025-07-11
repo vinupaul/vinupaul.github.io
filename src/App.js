@@ -78,7 +78,7 @@ const experiences = [
 
 
 
-//hello
+//hello it's me 
 function App() {
   const contactRef = useRef(null);
   const [showSidebar, setShowSidebar] = useState(false);
