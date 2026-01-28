@@ -129,7 +129,7 @@ function App() {
               id === 'resume' ? (
                 <li key={id}>
                   <a
-                    href="/resume/Vinupaul_Resume.pdf"
+                    href="/resume/Paul_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 transition transform font-semibold shadow-md border border-blue-700"
@@ -163,7 +163,7 @@ function App() {
               id === 'resume' ? (
                 <a
                   key={id}
-                  href="/resume/Vinupaul_Resume.pdf"
+                  href="/resume/Paul_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block px-4 py-2 bg-blue-600 text-white rounded-full text-center hover:bg-blue-700 transition"
