@@ -129,14 +129,13 @@ function App() {
               id === 'resume' ? (
                 <li key={id}>
                   <a
-                    href="/resume/Paul_Resume.pdf"
+                    href="/resume/Vinu_Paul_Resume_Updated.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 transition transform font-semibold shadow-md border border-blue-700"
                   >
                     Resume
                   </a>
-
                 </li>
               ) : (
                 <li key={id}>
