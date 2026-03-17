@@ -162,7 +162,7 @@ function App() {
               id === 'resume' ? (
                 <a
                   key={id}
-                  href="/resume/Paul_Resume.pdf"
+                  href="/resume/Vinu_Paul_Resume_Updated.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block px-4 py-2 bg-blue-600 text-white rounded-full text-center hover:bg-blue-700 transition"
