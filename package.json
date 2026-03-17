@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^12.12.1",
     "gh-pages": "^6.3.0",
+    "goober": "^2.1.18",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
